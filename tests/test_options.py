@@ -1,11 +1,11 @@
 import unittest
-from datetime import datetime as dt
+from datetime import date
 from src.mrs_derivatives.options import OptionData  
 
 class TestOptionData(unittest.TestCase):
 
     def test_default_values(self):
-        expiration = dt(2025, 1, 30)
+        expiration = date(2025, 1, 30)
         option = OptionData(strike=50, expiration=expiration)
         
         # Test default values
@@ -15,7 +15,7 @@ class TestOptionData(unittest.TestCase):
         self.assertEqual(option.multiplier, 100)  # Default multiplier should be 100
 
     def test_custom_values(self):
-        expiration = dt(2025, 1, 30)
+        expiration = date(2025, 1, 30)
         option = OptionData(strike=50, expiration=expiration, what='put', multiplier=200)
         
         # Test custom values
@@ -28,7 +28,7 @@ class TestOptionData(unittest.TestCase):
     def test_invalid_what(self):
         # Test invalid 'what' value
         with self.assertRaises(ValueError) as context:
-            OptionData(strike=50, expiration=dt(2025, 1, 30), what='invalid')
+            OptionData(strike=50, expiration=date(2025, 1, 30), what='invalid')
         
         self.assertTrue(
             "Invalid value for 'what': invalid. Must be 'call' or 'put'." in str(context.exception)

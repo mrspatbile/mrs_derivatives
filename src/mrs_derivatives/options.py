@@ -1,11 +1,11 @@
 from dataclasses import dataclass
-from datetime import datetime as dt
+from datetime import date
 from typing import Literal
 
 @dataclass(frozen=True)
 class OptionData:
     strike: float
-    expiration: dt
+    expiration: date
     what: Literal['call', 'put'] = 'call'
     multiplier: int = 100
 
