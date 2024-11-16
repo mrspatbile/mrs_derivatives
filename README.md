@@ -4,7 +4,7 @@ Create objects and conveniently get valuation, implicit volatility, risk measure
 
 ## Installation
 
-You can install this package using pip. For example:
+You can install this package using pip:
 
 ```bash
 pip install  mrs_derivatives
@@ -12,13 +12,8 @@ pip install  mrs_derivatives
 
 ---
 
-### **3. Usage Examples**
-Provide clear and concise examples of how to use the package. 
+### **Usage Examples**
 
-
-## Usage
-
-Here's a simple example:
 
 ```python
 from mrs_derivatives import Options
@@ -29,15 +24,15 @@ print(call1)
 
 ---
 
-### **4. Features**
-Highlight the main features or capabilities of the package.
-
 ## Features
 
-- 1: make call or put instances with embeded functionalities
-- 2: compute greeks and visualize partial effects of interest rate, time to expiration and underlying value
-- 3: get valuation using different methodologies
-- 4: compute underlying implied volatility from options prices
+📞 Create Call or Put Instances with Embedded Functionalities: methods for pricing, Greeks, and visualizations.
+
+📊 Compute Greeks (Delta, Gamma, Theta, Vega, Rho) and Visualize Partial Effects of interest rate, time to expiration, and underlying value.
+
+💵 Get option valuation usign different techniques (Black-Scholes, binomial, Monte Carlo).
+
+🔍 Compute Underlying Implied Volatility from Options Prices from option's market price.
 
 ## Contributing
 
