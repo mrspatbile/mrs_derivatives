@@ -26,13 +26,13 @@ print(call1)
 
 ## Features
 
-📞 Create Call or Put Instances with Embedded Functionalities: methods for pricing, Greeks, and visualizations.
+> 🛡️ Create Call or Put Instances with Embedded Functionalities: methods for pricing, Greeks, and visualizations.
 
-📊 Compute Greeks (Delta, Gamma, Theta, Vega, Rho) and Visualize Partial Effects of interest rate, time to expiration, and underlying value.
+> 🏛️ Compute Greeks (Delta, Gamma, Theta, Vega, Rho) and Visualize Partial Effects of interest rate, time to expiration, and underlying value.
 
-💵 Get option valuation usign different techniques (Black-Scholes, binomial, Monte Carlo).
+> 💵 Get option valuation usign different techniques (Black-Scholes, binomial, Monte Carlo).
 
-🔍 Compute Underlying Implied Volatility from Options Prices from option's market price.
+> 🎲 Compute Underlying Implied Volatility from Options Prices from option's market price.
 
 ## Contributing
 
