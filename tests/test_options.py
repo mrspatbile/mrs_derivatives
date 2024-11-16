@@ -24,5 +24,16 @@ class TestOptionData(unittest.TestCase):
         self.assertEqual(option.what, 'put')  # Custom 'what' should be 'put'
         self.assertEqual(option.multiplier, 200)  # Custom multiplier should be 200
 
+    
+    def test_invalid_what(self):
+        # Test invalid 'what' value
+        with self.assertRaises(ValueError) as context:
+            OptionData(strike=50, expiration=dt(2025, 1, 30), what='invalid')
+        
+        self.assertTrue(
+            "Invalid value for 'what': invalid. Must be 'call' or 'put'." in str(context.exception)
+        )
+
+
 if __name__ == '__main__':
     unittest.main()
