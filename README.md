@@ -14,14 +14,30 @@ pip install  mrs_derivatives
 
 ### **Usage Examples**
 
+The basic class is `Option`, which is instantiated with 4 attributes:  `what`, `multiplier`, `expiration`, `strike`.
 
 ```python
 from mrs_derivatives import Options
+from datetime import datetime as dt
 
-call1 = Options(data)
-print(call1)
+# arguments for the working example
+strike = 50
+expiration = dt(2025, 1, 30)
+what = 'call'
+multiplier = 100
+
+# instantiate the option
+option = Options(strike, expiration, what, multiplier)
+
+print(option)
 ```
 
+The default for option is a `what=call` and `multiplier=100`. Thus a call can be instatiated by passing only 2 arguments:
+
+```python
+call_1 = Options(strike, expiration)
+print(call_1)
+```
 ---
 
 ## Features
