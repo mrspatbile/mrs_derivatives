@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "mrs-derivatives"
+version = "0.1.0"
+description = ""
+authors = ["msrspatbile <mrspatbile@gmail.com>"]
+readme = "README.md"
+packages = [{include = "mrs_derivatives", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
