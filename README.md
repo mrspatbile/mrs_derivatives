@@ -18,18 +18,19 @@ The basic class is `Option`, which is instantiated with 4 attributes:  `what`, `
 
 ```python
 from mrs_derivatives import Options
-from datetime import datetime as dt
+from datetime import date
 
 # arguments for the working example
 strike = 50
-expiration = dt(2025, 1, 30)
-what = 'call'
-multiplier = 100
+expiration = date(2025, 1, 30)
+what = 'put'
+multiplier = 1000
 
 # instantiate the option
 option = Options(strike, expiration, what, multiplier)
 
 print(option)
+# output: OptionData(strike=50, expiration=date(2025, 1, 30), what='put', multiplier=1000)
 ```
 
 The default for option is a `what=call` and `multiplier=100`. Thus a call can be instatiated by passing only 2 arguments:
