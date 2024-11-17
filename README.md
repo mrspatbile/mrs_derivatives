@@ -14,11 +14,11 @@ pip install  mrs_derivatives
 
 ### **Usage Examples**
 
-There are two basic classes taht holds data: `OptionData` (with attibutes corresponding to the instrument) and `MarketData` (hold values that are bound to change as underlying spot price, interest rates and volatility).   
+There are two basic classes to hold data: `InstrumentData` (with immutable attributes corresponding to the instrument as strike, option price and expuration date) and `MarketData` (hold values that are bound to change as underlying spot price, interest rates and volatility).   
 
 
 ```python
-from mrs_derivatives.options_data import OptionData
+from mrs_derivatives.options_data import InstrumentData, MarketData
 from datetime import date
 
 # arguments for the working example
@@ -28,31 +28,41 @@ what = 'put'
 multiplier = 1000
 
 # instantiate an object with immutable option characteristics
-option = OptionData(strike, expiration, what, multiplier)
-
+option = option = InstrumentData(strike, expiration, what, multiplier)
 print(option)
-# output: OptionData(strike=50, expiration=datetime.date(2025, 1, 30), what='put', multiplier=1000, inderlying=None)
+# InstrumentData(strike=50, expiration=datetime.date(2025, 1, 30), what='put', multiplier=1000, underlying=None)
 ```
 
 The default for option is a `what=call` and `multiplier=100`. Thus a call can be instatiated by passing only 2 arguments:
 
 ```python
-call_1 = OptionData(strike, expiration)
-print(call_1)
-# output: OptionData(strike=50, expiration=datetime.date(2025, 1, 30), what='call', multiplier=100, underlying=None)
+call = InstrumentData(strike, expiration)
+print(call)
+# output: InstrumentData(strike=50, expiration=datetime.date(2025, 1, 30), what='call', multiplier=100, underlying=None)
 ```
 
+The object for market data contains the additional market information (on tip of teh instrument's info) for computing price and risk.
 ```python
-from mrs_derivatives.options_market import OptionMarket
-from datetime import date
 vol = .25
-rate = .02
-spot = 100
+rate=.02
+spot=52
 
-OptionMarket(vol, rate, spot)
-#output: OptionMarket(vol=0.25, rate=0.02, spot=100, div=0)
+mkt = MarketData(vol, rate, spot)
+print(mkt)
+#output: MarketData(vol=0.25, rate=0.02, spot=52, div=0)
 ```
 ---
+The `OptionPricing` class takes two inputs: one object `InstrumentData` and another `MarketData`. Upon instantiation, it calculates and stores $dte$ (time to expiry), $d_1$, and $d_2$ as attributes for efficient reuse in pricing, Greeks, and sensitivities.
+
+```python
+pricing = OptionPricing(call, mkt)
+print(pricing.d1, pricing.d12, pricing.dte)
+# (0.44072697364909796, 0.328160402782289, 0.20273972602739726)
+```
+
+
+
+get_black_scholes
 
 ## Features
 

@@ -24,5 +24,5 @@ class MarketData:
     vol: Number
     rate: float
     spot: Number
-    div: Number
+    div: Number = 0
     

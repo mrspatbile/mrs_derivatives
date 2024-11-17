@@ -3,18 +3,18 @@ import math
 from random import norm
 from pricing import get_dte_d1_d2
 
-def delta(spot, strike, rate, vol, dte, option_type, div=0):
+def delta(spot, strike, rate, vol, dte, option_type, d1, div=0):
     d1_val = d1(spot, strike, rate, vol, dte, div)
     if option_type == 'call':
         return math.exp(-div * dte) * norm.cdf(d1_val)
     else:
         return -math.exp(-div * dte) * norm.cdf(-d1_val)
 
-def gamma(spot, strike, rate, vol, dte, div=0):
+def gamma(spot, strike, rate, vol, dte, d1, div=0):
     d1_val = d1(spot, strike, rate, vol, dte, div)
     return norm.pdf(d1_val) * math.exp(-div * dte) / (spot * vol * math.sqrt(dte))
 
-def theta(spot, strike, rate, vol, dte, option_type, div=0):
+def theta(spot, strike, rate, vol, dte, option_type, d1, d2, div=0):
     d1_val = d1(spot, strike, rate, vol, dte, div)
     d2_val = d2(spot, strike, rate, vol, dte, div)
     first_term = -(spot * vol * norm.pdf(d1_val) * math.exp(-div * dte)) / (2 * math.sqrt(dte))
@@ -26,11 +26,11 @@ def theta(spot, strike, rate, vol, dte, option_type, div=0):
         third_term = div * spot * math.exp(-div * dte) * norm.cdf(-d1_val)
     return (first_term + second_term + third_term) / 365
 
-def vega(spot, strike, rate, vol, dte, div=0):
+def vega(spot, strike, rate, vol, dte, d1, div=0):
     d1_val = d1(spot, strike, rate, vol, dte, div)
     return spot * norm.pdf(d1_val) * math.exp(-div * dte) * math.sqrt(dte) / 100
 
-def rho(spot, strike, rate, vol, dte, option_type, div=0):
+def rho(spot, strike, rate, vol, dte, option_type, d2, div=0):
     d2_val = d2(spot, strike, rate, vol, dte, div)
     if option_type == 'call':
         return strike * dte * math.exp(-rate * dte) * norm.cdf(d2_val) / 100

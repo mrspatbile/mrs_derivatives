@@ -5,8 +5,7 @@ from scipy.stats import norm  # type: ignore
 from datetime import date
 from numbers import Number
 from typing import Optional, Literal, Tuple
-from options_data import OptionData
-from options_market import OptionMarket
+from options_data import InstrumentData, MarketData
 
 
 def get_dte(
@@ -80,47 +79,45 @@ def get_dte_d1_d2(
 
 class OptionPricing:
     def __init__(self, 
-                 option_data: OptionData, 
-                 market_data: OptionMarket, 
-                 ):
+        option_data: InstrumentData, 
+        market_data: MarketData, 
+        ):
 
-        self.opt = option_data
+        self.inst = option_data
         self.mkt = market_data
 
-    
-    def __post_init__(self):
         self.dte, self.d1, self.d2 = get_dte_d1_d2(
-            expiration=self.opt.expiration,
+            expiration=self.inst.expiration,
             spot=self.mkt.spot,
-            strike=self.opt.strike,
+            strike=self.inst.strike,
             rate=self.mkt.rate,
             vol=self.mkt.vol,
-            div=self.opt.div, 
+            div=self.mkt.div, 
         )
    
     @property
     def get_black_scholes(self):
         return  black_scholes(
-                spot=self.mkt.spot,
-                strike=self.opt.strike,
-                div=self.mkt.div,
-                rate=self.mkt.rate,
-                option_type=self.mkt.what,
-                dte=self.dte,
-                d1=self.d1,
-                d2=self.d2,
+            spot=self.mkt.spot,
+            strike=self.inst.strike,
+            div=self.mkt.div,
+            rate=self.mkt.rate,
+            option_type=self.inst.what,
+            dte=self.dte,
+            d1=self.d1,
+            d2=self.d2,
         )
 
 
-def black_scholes(  
-    spot: Number, 
-    strike: Number, 
+def black_scholes(
+    spot: Number,  # Accepts any numeric type (int, float, etc.)
+    strike: Number,
     rate: Number,
-    dte: Number,  
+    dte: Number,
     d1: float,
     d2: float,
-    div: Number = 0, 
-    option_type: Literal['call', 'put'] = 'call', 
+    div: Number = 0,
+    option_type: Literal['call', 'put'] = 'call',
     ) -> float:
     """
     Calculate the Black-Scholes price for a European option.
