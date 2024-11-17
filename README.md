@@ -14,10 +14,11 @@ pip install  mrs_derivatives
 
 ### **Usage Examples**
 
-The basic class is `Option`, which is instantiated with 4 attributes:  `what`, `multiplier`, `expiration`, `strike`.
+There are two basic classes taht holds data: `OptionData` (with attibutes corresponding to the instrument) and `MarketData` (hold values that are bound to change as underlying spot price, interest rates and volatility).   
+
 
 ```python
-from mrs_derivatives import Options
+from mrs_derivatives.options_data import OptionData
 from datetime import date
 
 # arguments for the working example
@@ -26,18 +27,30 @@ expiration = date(2025, 1, 30)
 what = 'put'
 multiplier = 1000
 
-# instantiate the option
-option = Options(strike, expiration, what, multiplier)
+# instantiate an object with immutable option characteristics
+option = OptionData(strike, expiration, what, multiplier)
 
 print(option)
-# output: OptionData(strike=50, expiration=date(2025, 1, 30), what='put', multiplier=1000)
+# output: OptionData(strike=50, expiration=datetime.date(2025, 1, 30), what='put', multiplier=1000, inderlying=None)
 ```
 
 The default for option is a `what=call` and `multiplier=100`. Thus a call can be instatiated by passing only 2 arguments:
 
 ```python
-call_1 = Options(strike, expiration)
+call_1 = OptionData(strike, expiration)
 print(call_1)
+# output: OptionData(strike=50, expiration=datetime.date(2025, 1, 30), what='call', multiplier=100, underlying=None)
+```
+
+```python
+from mrs_derivatives.options_market import OptionMarket
+from datetime import date
+vol = .25
+rate = .02
+spot = 100
+
+OptionMarket(vol, rate, spot)
+#output: OptionMarket(vol=0.25, rate=0.02, spot=100, div=0)
 ```
 ---
 

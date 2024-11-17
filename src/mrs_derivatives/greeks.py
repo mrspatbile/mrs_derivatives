@@ -1,10 +1,7 @@
 # greeks.py
-
 import math
-from scipy.stats import norm
-from datetime import date
-from pricing import dte, d1, d2
-
+from random import norm
+from pricing import get_dte_d1_d2
 
 def delta(spot, strike, rate, vol, dte, option_type, div=0):
     d1_val = d1(spot, strike, rate, vol, dte, div)
