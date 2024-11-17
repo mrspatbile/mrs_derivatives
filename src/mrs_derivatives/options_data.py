@@ -19,10 +19,26 @@ class InstrumentData:
         
 
 
-@dataclass
 class MarketData:
-    vol: Number
-    rate: float
-    spot: Number
-    div: Number = 0
-    
+    def __init__(self, 
+            spot: Number, 
+            rate: float, 
+            vol: float, 
+            div: float = 0
+            ):
+        # List of parameters to validate
+        params = [("spot", spot), 
+                  ("rate", rate), 
+                  ("vol", vol), 
+                  ("div", div)]
+        
+        # Check that all values are non-negative
+        for param_name, value in params:
+            if value < 0:
+                raise ValueError(f"{param_name.capitalize()} cannot be negative.")
+
+        # Assign values if no error was raised
+        self.spot = spot
+        self.rate = rate
+        self.vol = vol
+        self.div = div
