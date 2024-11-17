@@ -47,13 +47,13 @@ print(call_1)
 
 > 🏛️ Compute **greeks** (delta, gamma, theta, vega, rho) and **visualize partial effects** of interest rate, time to expiration, and underlying value.
 
-> 💵 Get option valuation usign different techniques (Black-Scholes, binomial, Monte Carlo).
+> 💵 Get option valuation using different techniques (Black-Scholes, binomial, Monte Carlo).
 
 > 🎲 Compute **implied volatility** for the underlying given option's market price.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request with your improvements.
+Do not be shy! Please contribute to this project by either openning an issue or submitting a pull request with your improvements.
 
 ## License
 

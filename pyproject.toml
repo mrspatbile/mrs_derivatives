@@ -8,6 +8,7 @@ packages = [{include = "mrs_derivatives", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.13"
+scipy = "^1.14.1"
 
 
 [build-system]
