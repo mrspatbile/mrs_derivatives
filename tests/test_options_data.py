@@ -1,5 +1,6 @@
-#python -m unittest test_options_data.py
-
+# python -m unittest tests/test_options_data.py
+# python -m unittest tests.test_options_data
+# python -m unittest tests.test_options_data.TestInstrumentData
 
 import unittest
 from datetime import date
