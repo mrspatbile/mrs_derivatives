@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/google/pybadges.svg?style=svg)](https://circleci.com/gh/google/pybadges)
 ![pypi](https://img.shields.io/pypi/v/pybadges.svg)
-https://img.shields.io/badge/https%3A%2F%2Fwww.mrspatbile.com-blue
+![mrs](https://img.shields.io/badge/https%3A%2F%2Fwww.mrspatbile.com-blue)
 
    
 # pybadges
