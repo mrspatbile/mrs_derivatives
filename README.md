@@ -1,12 +1,7 @@
-https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white
 [![CircleCI](https://circleci.com/gh/google/pybadges.svg?style=svg)](https://circleci.com/gh/google/pybadges)
 ![pypi](https://img.shields.io/pypi/v/pybadges.svg)
-![versions](https://img.shields.io/pypi/pyversions/pybadges.svg)
    
 # pybadges
-
-pybadges is a Python library and command line tool that allows you to create
-Github-style badges as SVG images. For example:
 
 ![pip installation](tests/golden-images/pip.svg)
 ![pip installation](tests/golden-images/license.svg)
