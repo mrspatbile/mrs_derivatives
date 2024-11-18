@@ -48,7 +48,7 @@ print(call)
 # output: InstrumentData(strike=50, expiration=datetime.date(2025, 1, 30), what='call', multiplier=100, underlying=None)
 ```
 
-The object for market data contains the additional market information (on tip of teh instrument's info) for computing price and risk.
+The object for market data contains the additional market information (on top of the instrument's info) for computing price and risk.
 ```python
 vol = .25
 rate=.02
