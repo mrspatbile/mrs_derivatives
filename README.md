@@ -1,6 +1,8 @@
 [![CircleCI](https://circleci.com/gh/google/pybadges.svg?style=svg)](https://circleci.com/gh/google/pybadges)
 ![pypi](https://img.shields.io/pypi/v/pybadges.svg)
-![mrs](https://img.shields.io/badge/https%3A%2F%2Fwww.mrspatbile.com-8A2BE2)
+<a href="http://www.mrspatbile.com" target="_blank">
+  <img src="https://img.shields.io/badge/mrs.patbile-%238A2BE2?style=flat-square&logoColor=white&labelColor=%238A2BE2" alt="mrs.patbile" />
+</a>
 ![Static Badge](https://img.shields.io/badge/python-3.13-blue)
 
 
