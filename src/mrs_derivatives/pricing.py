@@ -113,8 +113,8 @@ class OptionPricing:
                           self.inst.strike, 
                           self.mkt.rate, 
                           self.mkt.vol, 
-                          self.dte, 
                           self.inst.what, 
+                          self.dte, 
                           self.mkt.div)
 
 
@@ -122,11 +122,11 @@ def black_scholes(
     spot: Number,  # Accepts any numeric type (int, float, etc.)
     strike: Number,
     rate: Number,
+    option_type: Literal['call', 'put'] = 'call',
     dte: Number,
     d1: float,
     d2: float,
     div: Number = 0,
-    option_type: Literal['call', 'put'] = 'call',
     ) -> float:
     """
     Calculate the Black-Scholes price for a European option.

@@ -1,8 +1,8 @@
 import unittest
 from datetime import date
 from src.mrs_derivatives.options_data import InstrumentData, MarketData
-from src.mrs_derivatives.pricing import OptionPricing, get_dte_d1_d2, black_scholes
-from unittest.mock import MagicMock
+from src.mrs_derivatives.pricing import OptionPricing, black_scholes
+
 
 
 class TestOptionPricing(unittest.TestCase):
