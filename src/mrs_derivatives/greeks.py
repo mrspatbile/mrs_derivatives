@@ -1,53 +1,101 @@
 # greeks.py
 import math
-from random import norm
-from pricing import get_dte_d1_d2
+from scipy.stats import norm # type: ignore
+from typing import Optional, Dict
+from numbers import Number
 
-def delta(spot, strike, rate, vol, dte, option_type, d1, div=0):
-    d1_val = d1(spot, strike, rate, vol, dte, div)
+def delta(
+    spot: float, 
+    strike: float, 
+    rate: float, 
+    vol: float, 
+    option_type: str, 
+    dte: float, 
+    d1: float, 
+    div: float = 0
+) -> float:
     if option_type == 'call':
-        return math.exp(-div * dte) * norm.cdf(d1_val)
-    else:
-        return -math.exp(-div * dte) * norm.cdf(-d1_val)
+        return math.exp(-div * dte) * norm.cdf(d1)
+    return -math.exp(-div * dte) * norm.cdf(-d1)
 
-def gamma(spot, strike, rate, vol, dte, d1, div=0):
-    d1_val = d1(spot, strike, rate, vol, dte, div)
-    return norm.pdf(d1_val) * math.exp(-div * dte) / (spot * vol * math.sqrt(dte))
+def gamma(
+    spot: float, 
+    strike: float, 
+    rate: float, 
+    vol: float, 
+    dte: float, 
+    d1: float, 
+    div: Number = 0
+) -> float:
+    if vol == 0:
+        return float('inf')
+    return norm.pdf(d1) * math.exp(-div * dte) / (spot * vol * math.sqrt(dte))
 
-def theta(spot, strike, rate, vol, dte, option_type, d1, d2, div=0):
-    d1_val = d1(spot, strike, rate, vol, dte, div)
-    d2_val = d2(spot, strike, rate, vol, dte, div)
-    first_term = -(spot * vol * norm.pdf(d1_val) * math.exp(-div * dte)) / (2 * math.sqrt(dte))
+def theta(
+    spot: float, 
+    strike: float, 
+    rate: float, 
+    vol: float, 
+    option_type: str, 
+    dte: float, 
+    d1: float, 
+    d2: float, 
+    div: Number = 0
+) -> float:
+    first_term = -(spot * vol * norm.pdf(d1) * math.exp(-div * dte)) / (2 * math.sqrt(dte))
     if option_type == 'call':
-        second_term = rate * strike * math.exp(-rate * dte) * norm.cdf(d2_val)
-        third_term = -div * spot * math.exp(-div * dte) * norm.cdf(d1_val)
+        second_term = rate * strike * math.exp(-rate * dte) * norm.cdf(d2)
+        third_term = -div * spot * math.exp(-div * dte) * norm.cdf(d1)
     else:
-        second_term = -rate * strike * math.exp(-rate * dte) * norm.cdf(-d2_val)
-        third_term = div * spot * math.exp(-div * dte) * norm.cdf(-d1_val)
+        second_term = -rate * strike * math.exp(-rate * dte) * norm.cdf(-d2)
+        third_term = div * spot * math.exp(-div * dte) * norm.cdf(-d1)
     return (first_term + second_term + third_term) / 365
 
-def vega(spot, strike, rate, vol, dte, d1, div=0):
-    d1_val = d1(spot, strike, rate, vol, dte, div)
-    return spot * norm.pdf(d1_val) * math.exp(-div * dte) * math.sqrt(dte) / 100
+def vega(
+    spot: float, 
+    strike: float, 
+    rate: float, 
+    vol: float, 
+    dte: float, 
+    d1: float, 
+    div: Number = 0
+) -> float:
+    return spot * norm.pdf(d1) * math.exp(-div * dte) * math.sqrt(dte) / 100
 
-def rho(spot, strike, rate, vol, dte, option_type, d2, div=0):
-    d2_val = d2(spot, strike, rate, vol, dte, div)
+def rho(
+    spot: float, 
+    strike: float, 
+    rate: float, 
+    vol: float,
+    option_type: str, 
+    dte: float, 
+    d2: float, 
+    div: Number = 0
+) -> float:
     if option_type == 'call':
-        return strike * dte * math.exp(-rate * dte) * norm.cdf(d2_val) / 100
-    else:
-        return -strike * dte * math.exp(-rate * dte) * norm.cdf(-d2_val) / 100
+        return strike * dte * math.exp(-rate * dte) * norm.cdf(d2) / 100
+    return -strike * dte * math.exp(-rate * dte) * norm.cdf(-d2) / 100
 
-### Greeks Summary
-
-def greeks(spot, strike, rate, vol, dte, option_type, div=0):
-    greeks_dict = {
-        'delta': delta(spot, strike, rate, vol, dte, option_type, div),
-        'gamma': gamma(spot, strike, rate, vol, dte, div),
-        'theta': theta(spot, strike, rate, vol, dte, option_type, div),
-        'vega': vega(spot, strike, rate, vol, dte, div),
-        'rho': rho(spot, strike, rate, vol, dte, option_type, div),
-    }
+def get_greeks(
+    spot: float, 
+    strike: float, 
+    rate: float, 
+    vol: float, 
+    option_type: str, 
+    dte: float, 
+    d1: float, 
+    d2: float, 
+    div: Number = 0
+) -> Dict[str, float]:
     
+    greeks_dict = {
+    'delta': delta(spot, strike, rate, vol, option_type, dte, d1, div),
+    'gamma': gamma(spot, strike, rate, vol, dte, d1, div),
+    'theta': theta(spot, strike, rate, vol, option_type, dte, d1, d2, div),
+    'vega': vega(spot, strike, rate, vol, dte, d1, div),
+    'rho': rho(spot, strike, rate, vol, option_type, dte, d2, div),
+    }
+
     class GreeksDict:
         def __init__(self, greeks_dict):
             self.greeks_dict = greeks_dict

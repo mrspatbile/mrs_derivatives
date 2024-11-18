@@ -5,8 +5,8 @@ from scipy.stats import norm  # type: ignore
 from datetime import date
 from numbers import Number
 from typing import Optional, Literal, Tuple
-from options_data import InstrumentData, MarketData
-
+from .options_data import InstrumentData, MarketData
+from .greeks import get_greeks
 
 def get_dte(
     dte: int = None, 
@@ -107,6 +107,15 @@ class OptionPricing:
             d1=self.d1,
             d2=self.d2,
         )
+    
+    def greek_dict(self):
+        return get_greeks(self.mkt.spot, 
+                          self.inst.strike, 
+                          self.mkt.rate, 
+                          self.mkt.vol, 
+                          self.dte, 
+                          self.inst.what, 
+                          self.mkt.div)
 
 
 def black_scholes(

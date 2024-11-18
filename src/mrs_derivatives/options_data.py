@@ -3,7 +3,6 @@ from datetime import date
 from typing import Literal
 from numbers import Number
 
-
 @dataclass(frozen=True)
 class InstrumentData:
     strike: Number
@@ -17,7 +16,6 @@ class InstrumentData:
             raise ValueError(f"Invalid value for 'what': {self.what}."
                              " Must be 'call' or 'put'.")
         
-
 
 class MarketData:
     def __init__(self, 
