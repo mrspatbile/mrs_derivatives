@@ -1,22 +1,9 @@
 [![CircleCI](https://circleci.com/gh/google/pybadges.svg?style=svg)](https://circleci.com/gh/google/pybadges)
 ![pypi](https://img.shields.io/pypi/v/pybadges.svg)
 ![mrs](https://img.shields.io/badge/https%3A%2F%2Fwww.mrspatbile.com-blue)
-![Static Badge](https://img.shields.io/badge/mrspatbile.com?link=http%3A%2F%2Fwww.mrspatbile.com)
+![Static Badge](https://img.shields.io/badge/python-3.13-blue)
 
 
-   
-# pybadges
-
-![pip installation](tests/golden-images/pip.svg)
-![pip installation](tests/golden-images/license.svg)
-![pip installation](tests/golden-images/build-passing.svg)
-
-The aesthetics of the generated badges matches the  visual design found in this
-[specification](https://github.com/badges/shields/blob/master/spec/SPECIFICATION.md).
-
-The implementation of the library was heavily influenced by
-[Shields.io](https://github.com/badges/shields) and the JavaScript
-[badge-maker](https://github.com/badges/shields/tree/master/badge-maker#badge-maker) library.
 
 # mrs_derivatives
 
