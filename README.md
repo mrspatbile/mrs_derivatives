@@ -1,3 +1,5 @@
+https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white
+
 # mrs_derivatives
 
 Create objects and conveniently get valuation, implicit volatility, risk measures, visualize payoffs and value variation for various inputs.
