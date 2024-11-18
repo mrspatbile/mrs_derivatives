@@ -4,7 +4,6 @@ from src.mrs_derivatives.options_data import InstrumentData, MarketData
 from src.mrs_derivatives.pricing import OptionPricing, black_scholes
 
 
-
 class TestOptionPricing(unittest.TestCase):
 
     def setUp(self):
@@ -31,10 +30,10 @@ class TestOptionPricing(unittest.TestCase):
             strike=self.option_data.strike,
             div=self.market_data.div,
             rate=self.market_data.rate,
-            option_type=self.option_data.what,
             dte=self.option_pricing.dte,
             d1=self.option_pricing.d1,
-            d2=self.option_pricing.d2
+            d2=self.option_pricing.d2,
+            option_type=self.option_data.what,
         )
         self.assertAlmostEqual(price, expected_price, places=2)
 

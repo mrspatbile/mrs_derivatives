@@ -40,3 +40,11 @@ class MarketData:
         self.rate = rate
         self.vol = vol
         self.div = div
+
+    def __str__(self):
+        return (f"MarketData("
+            f"spot={self.spot:.2f}, "
+            f"rate={self.rate:.4f}, "
+            f"vol={self.vol:.4f}, "
+            f"div={self.div:.4f}"
+            f")")

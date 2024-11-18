@@ -81,19 +81,19 @@ def get_greeks(
     strike: float, 
     rate: float, 
     vol: float, 
-    option_type: str, 
     dte: float, 
     d1: float, 
     d2: float, 
-    div: Number = 0
+    option_type: str, 
+    div: Number = 0,
 ) -> Dict[str, float]:
     
     greeks_dict = {
-    'delta': delta(spot, strike, rate, vol, option_type, dte, d1, div),
-    'gamma': gamma(spot, strike, rate, vol, dte, d1, div),
-    'theta': theta(spot, strike, rate, vol, option_type, dte, d1, d2, div),
+    'delta': delta(spot, strike, rate, vol,  option_type, dte, d1,  div),
+    'gamma': gamma(spot, strike, rate, vol,  dte, d1, div),
+    'theta': theta(spot, strike, rate, vol,  option_type, dte, d1, d2, div),
     'vega': vega(spot, strike, rate, vol, dte, d1, div),
-    'rho': rho(spot, strike, rate, vol, option_type, dte, d2, div),
+    'rho': rho(spot, strike, rate, vol,  option_type, dte, d2, div),
     }
 
     class GreeksDict:

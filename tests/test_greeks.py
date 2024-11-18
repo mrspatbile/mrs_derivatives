@@ -55,7 +55,7 @@ class TestGreeksFunctions(unittest.TestCase):
         self.assertTrue(isclose(result, expected, rel_tol=1e-5))
 
     def test_get_greeks(self):
-        greeks = get_greeks(self.spot, self.strike, self.rate, self.vol, self.option_type, self.dte, self.d1, self.d2, self.div)
+        greeks = get_greeks(self.spot, self.strike, self.rate, self.vol, self.dte, self.d1, self.d2, self.option_type, self.div)
         self.assertTrue(isclose(greeks['delta'], 0.6903267443744298, rel_tol=1e-5))  # Update with actual expected values
         self.assertTrue(isclose(greeks['gamma'], 0.06130066079457635, rel_tol=1e-5))
         self.assertTrue(isclose(greeks['theta'], -0.028942189844193878, rel_tol=1e-5))

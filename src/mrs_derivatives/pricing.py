@@ -102,10 +102,10 @@ class OptionPricing:
             strike=self.inst.strike,
             div=self.mkt.div,
             rate=self.mkt.rate,
-            option_type=self.inst.what,
             dte=self.dte,
             d1=self.d1,
             d2=self.d2,
+            option_type=self.inst.what,
         )
     
     def greek_dict(self):
@@ -113,32 +113,36 @@ class OptionPricing:
                           self.inst.strike, 
                           self.mkt.rate, 
                           self.mkt.vol, 
-                          self.inst.what, 
                           self.dte, 
+                          self.d1, 
+                          self.d2, 
+                          self.inst.what, 
                           self.mkt.div)
+    
 
 
 def black_scholes(
     spot: Number,  # Accepts any numeric type (int, float, etc.)
     strike: Number,
     rate: Number,
-    option_type: Literal['call', 'put'] = 'call',
     dte: Number,
     d1: float,
     d2: float,
     div: Number = 0,
+    option_type: Literal['call', 'put'] = 'call',
     ) -> float:
     """
     Calculate the Black-Scholes price for a European option.
     
     Parameters:
-        spot (float): Current stock price.
-        strike (float): Strike price of the option.
-        rate (float): Risk-free interest rate.
-        vol (float): Volatility (standard deviation of returns).
+        spot: Current stock price.
+        strike: Strike price of the option.
+        rate: Risk-free interest rate.
+        dte: time to expiration in years.
+        d1: precomputed parameter to be reused in other functions
+        d2: precomputed parameter to be reused in other functions
         div (float): Dividend yield (default is 0).
         option_type (Literal['call', 'put']): 'call' or 'put' (default is 'call').
-        dte (float): Time to expiration in years (default is 1.0).
     
     Returns:
         float: Option price.
